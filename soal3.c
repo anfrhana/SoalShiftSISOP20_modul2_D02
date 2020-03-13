@@ -11,7 +11,7 @@
 
 int main() {
 	
-	pid_t pid, pid2, pid3, pid4, pid5, pid6;
+	pid_t pid, pid2, pid3, pid4, pid5, pid6, pid7;
 	int status;
 
 	pid= fork();
@@ -55,7 +55,8 @@ int main() {
      	execv("/usr/bin/unzip", unzip);
 	}
 //////////////////////////////////////////////////////////////////////////////////
-	else {
+	else 
+    {
 
 	while ((wait(&status)) > 0);
 
@@ -83,7 +84,8 @@ int main() {
 
 	if(S_ISDIR(st.st_mode)){
 		if(strcmp(dir->d_name, ".") == 0 || strcmp(dir->d_name, "..") == 0);
-	else{
+	else
+      {
 
 	pid5 = fork();
 
@@ -103,44 +105,25 @@ int main() {
 	pid6 = fork();
 
 	if(pid6 == 0){
-	char f[500];
-	FILE *t;
-	sprintf(f,"/home/hana/modul2/indomie/%s/coba1.txt", dir->d_name);
-	t = fopen(f,"w");
-	fclose(t);
+	chdir("/home/hana/modul2/jpg/");
+	char *mk[]={"touch","/home/hana/modul2/jpg/coba1.txt",NULL};
+        execv("/bin/touch",mk);
 	}
-
-	else{
-
-	while((wait(&status)) > 0);
 
 	sleep(3);
 
-	char f[500];
-	FILE *t;
-	sprintf(f, "/home/hana/modul2/indomie/%s/coba2.txt", dir->d_name);
-	t = fopen(f,"w");
-	fclose(t);
-	exit(0);
-	}
+	pid7 = fork();
 
+	if(pid7 == 0){
+	chdir("/home/hana/modul2/jpg/");
+	char *mk[]={"touch","/home/hana/modul2/jpg/coba2.txt",NULL};
+        execv("/bin/touch",mk);
 	}
-	}
-	}
-	}
-
-	else{
-	char* argv[] = {"mv",file, "/home/hana/modul2/sedaap/", NULL};
-	execv("/bin/mv", argv);
-	}
-
 	}
 	}
 	closedir(d);
-	}
-     }
-   }
-  
+}}}
+
 }
 
 
