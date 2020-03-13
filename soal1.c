@@ -44,6 +44,33 @@ int main(int argc, char *argv[])
   int status;
   int i,a,b,c;
  
+  pid_t pid, sid, child;
+        
+    pid = fork();
+
+    if (pid < 0)
+    {
+      exit(EXIT_FAILURE);
+    }
+
+    if (pid > 0)
+    {
+      exit(EXIT_SUCCESS);
+    }
+
+    umask(0);
+
+    sid = setsid();
+
+    if (sid < 0)
+    {
+      exit(EXIT_FAILURE);
+    }
+
+    close(STDIN_FILENO);
+    close(STDOUT_FILENO);
+    close(STDERR_FILENO);
+
   if(argc < 5 || argc > 5)
   {
     printf("Argumen wajib 4!!!\n");
@@ -66,7 +93,7 @@ int main(int argc, char *argv[])
       }
       else 
       {
-        printf("Argumen ke - %d salah!!!\n", i);
+        printf("Argumen %d salah!!!\n", i);
         exit(EXIT_FAILURE);
       }
     }
@@ -95,33 +122,7 @@ int main(int argc, char *argv[])
     strncpy(path, argv[4], 99);
     path[100] = '\0';
 
-    pid_t pid, sid, child;
-        
-    pid = fork();
-
-    if (pid < 0)
-    {
-      exit(EXIT_FAILURE);
-    }
-
-    if (pid > 0)
-    {
-      exit(EXIT_SUCCESS);
-    }
-
-    umask(0);
-
-    sid = setsid();
-
-    if (sid < 0)
-    {
-      exit(EXIT_FAILURE);
-    }
-
-    close(STDIN_FILENO);
-    close(STDOUT_FILENO);
-    close(STDERR_FILENO);
-
+    
     while (1) 
     {
       time_t now = time(NULL);
