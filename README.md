@@ -1,6 +1,6 @@
 Kelompok D02
-5111840000120	-	Aflakah Nur Farhana
-5111840000165	-	Muhammad Fikri Rabbani
+-> 5111840000120	-	Aflakah Nur Farhana
+-> 5111840000165	-	Muhammad Fikri Rabbani
 
 #Soal 3
 
