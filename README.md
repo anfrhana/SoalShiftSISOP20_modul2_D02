@@ -17,4 +17,48 @@ Catatan :
 
 jawaban
 3a. 
+berikut merupakan program untuk membuat directori indomie didalam /home/hana/modul2 
+```
+if (pid < 0) {
+	exit(EXIT_FAILURE); 
+	}
+
+	if (pid == 0) {
+	char *argv[] = {"mkdir", "-p", "/home/hana/modul2/indomie", NULL};
+	execv("/bin/mkdir", argv);	
+	}
+```
+  
+ berikut merupakan program untuk membuat directori sedaap didalam /home/hana/modul2 
+ 
+```
+while((wait(&status)) > 0);
+
+	pid2 = fork();
+  
+	if (pid2 < 0) {
+	exit(EXIT_FAILURE);
+	}
+
+	if (pid2 == 0) {
+	char *argv[] = {"mkdir","-p", "/home/hana/modul2/sedaap", NULL};
+	execv("/bin/mkdir", argv);
+	}
+```
+3b.
+berikut merupakan program untuk melakukan unzip pada file .zip
+```
+while((wait(&status)) > 0);
+	
+	pid3 = fork();
+  
+	if (pid3 < 0) {
+	exit(EXIT_FAILURE); 
+  	}
+
+	if (pid3 == 0) {
+	char *unzip[] = {"unzip", "/home/hana/modul2/jpg.zip", NULL};
+     	execv("/usr/bin/unzip", unzip);
+	}
+  ```
 
