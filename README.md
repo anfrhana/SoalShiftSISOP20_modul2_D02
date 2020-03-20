@@ -24,6 +24,36 @@ Contoh: ./program \* 34 7 /home/somi/test.sh
 Program dengan argumen seperti contoh di atas akan menjalankan script test.sh setiap
 detik pada jam 07:34.
 
+Pada soal 1 diminta untuk membuat crontab di bash menggunakan c dan tidak boleh menggunakan fungsi system.
+- 1.a Menerima input berupa Detik Menit Jam Serta Path file .sh
+Pertama dilakukan pengecekan dari argumen yang di inputkan yaitu berupa :
+
+	if(argc < 5 || argc > 5)
+  	{
+    	  printf("Argumen wajib 4!!!\n");
+    	  exit(EXIT_FAILURE);
+  	}
+
+  	else if(argc == 5)
+  	{
+    	  int arr[4];
+
+   	for (i = 1; i < 4; i++)
+	{
+	  if (batas(argv[i]))
+	  {
+	    arr[i] = atoi(argv[i]);
+	  }
+	  else if (cek(argv[i]))
+	  {
+	    arr[i] = -1;
+	  }
+	  else 
+	  {
+	    printf("Argumen %d salah!!!\n", i);
+  	    exit(EXIT_FAILURE);
+	  }
+	}
 
 **Soal 3**
 
