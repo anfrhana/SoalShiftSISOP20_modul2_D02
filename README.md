@@ -252,4 +252,80 @@ while((wait(&status)) > 0);
      	execv("/usr/bin/unzip", unzip);
 	}
   ```
+3c.
+```
+struct dirent *direktori;
+	DIR *dr = opendir("/home/hana/modul2/jpg");
+	
+	if (dr == NULL) {
+	return 0;
+	}
+	
+	while ((direktori = readdir(dr)) != NULL) {
+		char path[100];
 
+		struct stat filetype;
+		if (strcmp(direktori->d_name, ".") == 0 || strcmp(direktori->d_name, "..") == 0)continue;	 
+		else {
+			strcpy(path, "/home/hana/modul2/jpg/");
+			strcat(path, direktori->d_name);
+	
+			if (stat(path, &filetype) == 0) {
+				if (filetype.st_mode & S_IFDIR) {
+
+				if (pid4 = fork() == 0) {
+				char *move1[] = {"mv", path, "/home/hana/modul2/indomie/", NULL};
+				execv("/bin/mv", move1);
+				}
+				}
+
+				else {
+				if (pid4 = fork() == 0) {
+				char *move2[] = {"mv", path, "/home/hana/modul2/sedaap/", NULL};
+				execv("/bin/mv", move2);
+				}
+				}
+			}
+		}
+	}
+	closedir(dr);
+	sleep(3);
+```
+
+`struct dirent` memiliki isi berupa `d_name` untuk melihat nama, dan `d_type` yaitu melihat tipe.
+`if (strcmp(direktori->d_name, ".") == 0 || strcmp(direktori->d_name, "..") == 0)continue;`
+digunakan untuk melewati objek `.` dan `..`
+
+3d.
+```
+struct dirent *newfile;
+	DIR *f = opendir("/home/hana/modul2/indomie");
+	
+	while ((newfile = readdir(f)) != NULL) {
+		char loc[100];
+		if (strcmp(newfile->d_name, ".") == 0 || strcmp(newfile->d_name, "..") == 0) continue;
+		 
+		else {
+			
+			strcpy(loc, "/home/hana/modul2/indomie/");
+			strcat(loc, newfile->d_name);
+	
+			if (pid4 = fork() == 0) {
+			chdir(loc);
+			char *cr1[] = {"touch", "coba1.txt", NULL};
+			execv("/bin/touch", cr1);
+			} 
+
+			sleep(3);
+
+			if (pid4 = fork() == 0) {
+			chdir(loc);
+			char *cr2[] = {"touch", "coba2.txt", NULL};
+			execv("/bin/touch", cr2);
+			}
+		}
+	}
+	closedir(f);
+   }
+   ```
+   
