@@ -67,7 +67,58 @@ Argumen yang di cek harus berjumlah 5 jika berjumlah kurang atau lebih maka dia 
         arr[i] = -1;
       }
 ```
+Yang mana fungsi cek dan batasnya berupa 
+```
+int batas(char arr[])
+{
+  int i;
+  for (i = 0; i < strlen(arr); i++)
+  {
+    if (arr[i] < '0' || arr[i] > '9')
+    {
+      return 0;
+    }
+  }
+  return 1;
+}
 
+int cek(char arr[])
+{
+  if((strcmp(arr, "*")) == 0)
+  {
+    return 1; 
+  }
+  return 0;
+}
+```
+Setelah dicek maka akn dicek lagi apakah input yang diberikan tidak melebihi range dari waktu yang diberikan Detik: 0-59 atau * (any value), Menit: 0-59 atau * (any value), Jam: 0-23 atau * (any value)
+```
+    a = atoi(argv[1]);//Untuk merubah string menjadi integer
+    b = atoi(argv[2]);
+    c = atoi(argv[3]);
+
+    if (a < 0 || a > 59)
+    {
+      printf("Range detik salah!!!\n detik harus 0 - 59. \n");
+      exit(EXIT_FAILURE);
+    }
+    else if (b < 0 || b > 59)
+    {
+      printf("Range menit salah!!!\n menit harus 0 - 59. \n");
+      exit(EXIT_FAILURE);
+    }
+    else if (c < 0 || c > 23)
+    {
+      printf("Range jam salah!!!\n jam harus 0 - 23. \n");
+      exit(EXIT_FAILURE);
+    }   
+```
+Kemudian untuk path file .sh nya dapat diperoleh dari
+```
+    char path[100];
+    strncpy(path, argv[4], 99);
+    path[100] = '\0';
+```
 
 
 **Soal 3**
