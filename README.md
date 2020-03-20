@@ -16,16 +16,16 @@ ketentuan sebagai berikut:
 
 b. Program akan mengeluarkan pesan error jika argumen yang diberikan tidak
 sesuai
-- c. Program hanya menerima 1 config cron
-- d. Program berjalan di background (daemon)
-- e. Tidak boleh menggunakan fungsi system()
+c. Program hanya menerima 1 config cron
+d. Program berjalan di background (daemon)
+e. Tidak boleh menggunakan fungsi system()
 
 Contoh: ./program \* 34 7 /home/somi/test.sh
 Program dengan argumen seperti contoh di atas akan menjalankan script test.sh setiap
 detik pada jam 07:34.
 
 Pada soal 1 diminta untuk membuat crontab di bash menggunakan c dan tidak boleh menggunakan fungsi system.
-- 1.a Menerima input berupa Detik Menit Jam Serta Path file .sh
+- Menerima input berupa Detik Menit Jam Serta Path file .sh
 
 Pertama dilakukan pengecekan dari argumen yang di inputkan yaitu berupa :
 ```
@@ -91,7 +91,7 @@ int cek(char arr[])
   return 0;
 }
 ```
-Setelah dicek maka akn dicek lagi apakah input yang diberikan tidak melebihi range dari waktu yang diberikan Detik: 0-59 atau * (any value), Menit: 0-59 atau * (any value), Jam: 0-23 atau * (any value)
+Setelah dicek maka akan dicek lagi apakah input yang diberikan tidak melebihi range dari waktu yang diberikan Detik: 0-59 atau * (any value), Menit: 0-59 atau * (any value), Jam: 0-23 atau * (any value)
 ```
     a = atoi(argv[1]);//Untuk merubah string menjadi integer
     b = atoi(argv[2]);
@@ -119,6 +119,70 @@ Kemudian untuk path file .sh nya dapat diperoleh dari
     strncpy(path, argv[4], 99);
     path[100] = '\0';
 ```
+- Proses atau loop utama yang menjalankan argumen ke empat :
+```
+while (1) 
+    {
+      time_t now = time(NULL);
+      struct tm* timeNow = localtime(&now);
+
+      a = timeNow->tm_sec;
+      b = timeNow->tm_min;
+      c = timeNow->tm_hour;
+
+      if ((a == arr[1] || arr[1] == -1) && (b == arr[2] || arr[2] == -1) && (c == arr[3] || arr[3] == -1))
+      {
+	child = fork();
+        if (child == 0)
+        {    
+          run(path);
+        }
+        else 
+	while ((wait(&status)) > 0);
+      }
+      sleep(1);
+    }
+```
+dengan ketentuan program akan mengecek waktu dan membuat child yang akan menjalankan argumen keempat jika argumen - argumen sebelumnya sudah sama dengan waktu sekarang.
+
+Program menggunakan fungsi dan struct dari time.h untuk proses-proses yang berkaitan dengan waktu.
+```
+      time_t now = time(NULL);
+      struct tm* timeNow = localtime(&now);
+
+      a = timeNow->tm_sec;
+      b = timeNow->tm_min;
+      c = timeNow->tm_hour;
+```
+Pengecekan terhadap waktu
+```
+if ((a == arr[1] || arr[1] == -1) && (b == arr[2] || arr[2] == -1) && (c == arr[3] || arr[3] == -1))
+      {
+	child = fork();
+        if (child == 0)
+        {    
+          run(path);
+        }
+        else 
+	while ((wait(&status)) > 0);
+      }
+```
+Child menjalankan bash ketika child = 0
+```
+	if (child == 0)
+        {    
+          run(path);
+        }
+```
+Dimana bash yang dijalankan dipanggil dari fungsi run
+```
+void run(char *str)
+{ 
+   char *script[] = {"bash", str, NULL};
+   execv("/bin/bash", script);
+}
+```
+
 
 
 **Soal 3**
