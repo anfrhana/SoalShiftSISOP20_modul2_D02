@@ -56,7 +56,19 @@ Pertama dilakukan pengecekan dari argumen yang di inputkan yaitu berupa :
 	  }
 	}
 ```
-	
+Argumen yang di cek harus berjumlah 5 jika berjumlah kurang atau lebih maka dia akan exit. Pengecekan yang dilakukan adalah berupa mengecek apakah input berupa angka atau bintang, pengecekan terjadi dalam 
+```
+      if (batas(argv[i])) //Mengecek apakah input berupa angka
+      {
+        arr[i] = atoi(argv[i]);
+      }
+      else if (cek(argv[i])) //Mengecek apakah input berupa bintang(*)
+      {
+        arr[i] = -1;
+      }
+```
+
+
 
 **Soal 3**
 
