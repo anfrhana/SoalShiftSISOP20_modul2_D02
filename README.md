@@ -318,6 +318,9 @@ execv("/bin/mv", move2);`
 
 digunakan untuk memindahkan file ke dalam folder **sedaap** .
 
+``closedir(dr);``
+terakhir adalah menutup direktori.
+
 3d.
 ```
 struct dirent *newfile;
@@ -351,3 +354,4 @@ struct dirent *newfile;
    }
    ```
    Hampir sama seperti pada 3c , yang dilakukan pertama adalah mendeklarasi sebuah char yang akan menyimpan path dari file/direktori yang diinginkan. Untuk menambahkan file coba1.txt dan coba2.txt dilakukan dengan menggunakan fungsi `touch`. untuk mendapatkan lokasinya didapat dari `chdir` yang isinya merupakan path yang disimpan didalam char yang sudah di deklarasikan sebelumnya.
+Untuk membuat file setiap 3 detik sekali digunakan `sleep(3)`. terakhir jangan lupa untuk menutup direktori denan `closedir()`.
