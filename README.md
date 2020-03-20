@@ -208,7 +208,7 @@ Catatan :
 
 jawaban
 3a. 
-berikut merupakan program untuk membuat directori indomie didalam /home/hana/modul2 
+berikut merupakan program untuk membuat directori indomie didalam /home/hana/modul2. Dimana fungsi `mkdir` dipanggil melalui `execv`
 ```
 if (pid < 0) {
 	exit(EXIT_FAILURE); 
@@ -220,7 +220,7 @@ if (pid < 0) {
 	}
 ```
   
- berikut merupakan program untuk membuat directori sedaap didalam /home/hana/modul2 
+ berikut merupakan program untuk membuat directori sedaap didalam /home/hana/modul2. Dimana fungsi `mkdir` dipanggil melalui `execv`
  
 ```
 while((wait(&status)) > 0);
@@ -237,7 +237,7 @@ while((wait(&status)) > 0);
 	}
 ```
 3b.
-berikut merupakan program untuk melakukan unzip pada file .zip
+berikut merupakan program untuk melakukan unzip pada file .zip. Dimana fungsi `unzip` dipanggil melalui `execv`
 ```
 while((wait(&status)) > 0);
 	
@@ -254,7 +254,7 @@ while((wait(&status)) > 0);
   ```
 3c.
 ```
-struct dirent *direktori;
+	struct dirent *direktori;
 	DIR *dr = opendir("/home/hana/modul2/jpg");
 	
 	if (dr == NULL) {
@@ -293,9 +293,22 @@ struct dirent *direktori;
 ```
 
 `struct dirent` memiliki isi berupa `d_name` untuk melihat nama, dan `d_type` yaitu melihat tipe.
+
 `if (strcmp(direktori->d_name, ".") == 0 || strcmp(direktori->d_name, "..") == 0)continue;`
 digunakan untuk melewati objek `.` dan `..`
-
+```
+strcpy(path, "/home/hana/modul2/jpg/");
+strcat(path, direktori->d_name);
+```
+digunakan untuk mengcopy path dari file dengan `strcpy` kemudian path yang telah dicopy tersebut digabungkan dengan menggunakan `strcat` untuk mendapatkan file yang diinginkan.
+`(filetype.st_mode & S_IFDIR)`
+digunakan untuk melihat tipe file, jika file bertipe bukan direktori maka akan masuk ke fungsi else.
+`char *move1[] = {"mv", path, "/home/hana/modul2/indomie/", NULL};
+execv("/bin/mv", move1);`
+digunakan untu memindahkan direktori kedalam folder **indomie** .
+`char *move2[] = {"mv", path, "/home/hana/modul2/sedaap/", NULL};
+execv("/bin/mv", move2);`
+digunakan untuk memindahkan file ke dalam folder **sedaap** .
 3d.
 ```
 struct dirent *newfile;
