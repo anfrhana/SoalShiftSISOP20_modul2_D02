@@ -27,7 +27,7 @@ detik pada jam 07:34.
 Pada soal 1 diminta untuk membuat crontab di bash menggunakan c dan tidak boleh menggunakan fungsi system.
 - 1.a Menerima input berupa Detik Menit Jam Serta Path file .sh
 Pertama dilakukan pengecekan dari argumen yang di inputkan yaitu berupa :
-
+```
 	if(argc < 5 || argc > 5)
   	{
     	  printf("Argumen wajib 4!!!\n");
@@ -54,6 +54,8 @@ Pertama dilakukan pengecekan dari argumen yang di inputkan yaitu berupa :
   	    exit(EXIT_FAILURE);
 	  }
 	}
+```
+	
 
 **Soal 3**
 
